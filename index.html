@@ -7,11 +7,33 @@
 </head>
 <body>
     <h1>Expense Tracker</h1>
-    
+    <div class="input-div">
+        <input type="text" placeholder="Digite o nome:" class="nome-input">
+        <select class="lista-suspensa-input">
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+        </select>
+        <input type="number" class="valor-input" placeholder="Insira o Valor:">
+        <button class="button-input">Add</button>
+    </div>
 
+    <div class="output-div">
+        <h3>Entradas e Saídas</h3>
+        <p>Mouse : R$ -100</p>
+        <p>Curso de Inglês  : R$ -500</p>
+        <p>Salario : R$ +800</p>
+        <br>
+        
+    </div>
 
+    <div class="totais-div">
+        <h3>Balanço Dos Valores</h3>
+        <p>Total Recbido: R$: 800</p>
+        <p>Total Gasto: R$: 600</p>
+        <p>Restante: R$: 200 </p>
 
-
+        
+    </div>
 
     <script src="app.js"></script>
 </body>
