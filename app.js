@@ -20,11 +20,20 @@ document.querySelector('.button-input').addEventListener('click', () => {
 
 
 function pegaValores (nome, tipo , valor) {
+    let outputDivHtml = ''
+    
     expenseTracker.push({
         nome: nome,
         tipo: tipo,
         valor: valor
     });
+    
+    expenseTracker.forEach((expense) => {
+        let html = `<p>${expense.nome}: R$ -${expense.valor} <button>Delete</button></p>`
 
-    console.log(expenseTracker)
+        outputDivHtml += html
+
+    })
+
+    document.querySelector('.output-div').innerHTML = outputDivHtml;
 };
