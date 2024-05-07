@@ -1,4 +1,5 @@
 let expenseTracker = [];
+
 // Event Listener para click no botao ADD.
 document.querySelector('.button-input').addEventListener('click', () => {
 
@@ -15,13 +16,14 @@ document.querySelector('.button-input').addEventListener('click', () => {
     let valor = valorElement.value
 
     pegaValores(nome, listaSuspensa,valor);
+    calculaTotais ();
 
 });
 
 
 function pegaValores (nome, tipo , valor) {
-    let outputDivHtml = ''
-    
+    let outputDivHtml = '';
+    let sinal = '';
     expenseTracker.push({
         nome: nome,
         tipo: tipo,
@@ -29,11 +31,42 @@ function pegaValores (nome, tipo , valor) {
     });
     
     expenseTracker.forEach((expense) => {
-        let html = `<p>${expense.nome}: R$ -${expense.valor} <button>Delete</button></p>`
+        if (expense.tipo === 'entrada') {
+            sinal = '+'
+        } else {
+            sinal = '-'
+        }
+        
+        let html = `<p>${expense.nome}: R$ ${sinal}${expense.valor} <button>Delete</button></p>`
 
         outputDivHtml += html
 
     })
-
     document.querySelector('.output-div').innerHTML = outputDivHtml;
 };
+
+
+
+function calculaTotais () {
+    let entradaTotal = 0;
+    let saidaTotal = 0; 
+    let restante = 0;
+    for (let i = 0; i < expenseTracker.length; i++ ) {
+        if (expenseTracker[i].tipo === 'entrada'){
+            entradaTotal += Number(expenseTracker[i].valor)
+        } else {
+            saidaTotal += Number(expenseTracker[i].valor)
+        } 
+    }
+
+    restante = entradaTotal - saidaTotal
+
+    document.querySelector('.totais-div').innerHTML = `<p>Total Recbido: R$: ${entradaTotal}</p>
+        <p>Total Gasto: R$: ${saidaTotal}</p>
+        <p>Restante: R$: ${restante} </p>`
+}
+
+/*document.querySelector('.totais-div').innerHTML = `<p>Total Recbido: R$: ${totalEntrada}</p>
+    <p>Total Gasto: R$: ${totalSaida}</p>
+    <p>Restante: R$: ${restante} </p>`
+*/
