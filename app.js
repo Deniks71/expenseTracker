@@ -24,22 +24,30 @@ document.querySelector('.button-input').addEventListener('click', () => {
 function pegaValores (nome, tipo , valor) {
     let outputDivHtml = '';
     let sinal = '';
-    expenseTracker.push({
-        nome: nome,
-        tipo: tipo,
-        valor: valor
-    });
-    
-    expenseTracker.forEach((expense) => {
+
+    if (nome != 'noPush' ) {
+        expenseTracker.push({
+            nome: nome,
+            tipo: tipo,
+            valor: valor
+        });
+        
+    }
+   
+    expenseTracker.forEach((expense,i) => {
         if (expense.tipo === 'entrada') {
             sinal = '+'
         } else {
             sinal = '-'
         }
         
-        let html = `<p>${expense.nome}: R$ ${sinal}${expense.valor} <button>Delete</button></p>`
+        let html = `<p>${expense.nome}: R$ ${sinal}${expense.valor} <button onclick=" 
+            expenseTracker.splice(${i},1);
+            pegaValores('noPush','noPush','noPush')
+        ">Delete</button></p>`
 
         outputDivHtml += html
+        console.log(expenseTracker)
 
     })
     document.querySelector('.output-div').innerHTML = outputDivHtml;
@@ -66,7 +74,3 @@ function calculaTotais () {
         <p>Restante: R$: ${restante} </p>`
 }
 
-/*document.querySelector('.totais-div').innerHTML = `<p>Total Recbido: R$: ${totalEntrada}</p>
-    <p>Total Gasto: R$: ${totalSaida}</p>
-    <p>Restante: R$: ${restante} </p>`
-*/
