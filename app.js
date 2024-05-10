@@ -43,7 +43,8 @@ function pegaValores (nome, tipo , valor) {
         
         let html = `<p>${expense.nome}: R$ ${sinal}${expense.valor} <button onclick=" 
             expenseTracker.splice(${i},1);
-            pegaValores('noPush','noPush','noPush')
+            pegaValores('noPush','noPush','noPush');
+            calculaTotais ()
         ">Delete</button></p>`
 
         outputDivHtml += html
